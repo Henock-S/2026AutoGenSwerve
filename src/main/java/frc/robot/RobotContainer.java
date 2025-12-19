@@ -19,6 +19,10 @@ import edu.wpi.first.wpilibj2.command.button.CommandXboxController;
 import edu.wpi.first.wpilibj2.command.button.RobotModeTriggers;
 import edu.wpi.first.wpilibj2.command.sysid.SysIdRoutine.Direction;
 
+//Joystick imports
+import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.generated.TunerConstants;
 import frc.robot.subsystems.CommandSwerveDrivetrain;
 
@@ -37,12 +41,19 @@ public class RobotContainer {
 
     private final CommandXboxController joystick = new CommandXboxController(0);
 
+    //Flight Sticks Establishment
+
+    //private final Joystick translationStick = new Joystick(1);
+    //private final Joystick rotationStick = new Joystick(2);
+
+    //private boolean useFlightSticks = false;
+
     public final CommandSwerveDrivetrain drivetrain = TunerConstants.createDrivetrain();
 
     public RobotContainer() {
         configureBindings();
-    }
-
+}
+    
     private void configureBindings() {
         // Note that X is defined as forward according to WPILib convention,
         // and Y is defined as to the left according to WPILib convention.
@@ -50,8 +61,8 @@ public class RobotContainer {
             // Drivetrain will execute this command periodically
             drivetrain.applyRequest(() ->
                 drive.withVelocityX(-joystick.getLeftY() * MaxSpeed * 0.3) // Drive forward with negative Y (forward)
-                    .withVelocityY(-joystick.getLeftX() * MaxSpeed * 0.3) // Drive left with negative X (left)
-                    .withRotationalRate(-joystick.getRightX() * MaxAngularRate * 0.3) // Drive counterclockwise with negative X (left)
+                   .withVelocityY(-joystick.getLeftX() * MaxSpeed * 0.3) // Drive left with negative X (left)
+                   .withRotationalRate(-joystick.getRightX() * MaxAngularRate * 0.3) // Drive counterclockwise with negative X (left)
             )
         );
 
